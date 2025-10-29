@@ -1,12 +1,12 @@
 name: modern_form_popupmenu
 description: PopUpMenu customized.
-version: 1.0.3
+version: 2.1.2
 repository: https://github.com/apps-auth/modern_form_popupmenu
 homepage: https://github.com/apps-auth/modern_form_popupmenu
 
 environment:
-  sdk: '>=2.12.0 <3.0.0'
-  flutter: ">=1.17.0"
+  sdk: ">=3.8.1 <4.0.0"
+  flutter: ">=3.32.4"
 
 dependencies:
   flutter:
@@ -15,5 +15,3 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
-
-flutter:
