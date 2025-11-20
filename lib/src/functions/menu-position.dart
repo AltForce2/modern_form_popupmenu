@@ -8,8 +8,14 @@ RelativeRect modernFormPopupMenuPosition(
     menuLocation = ModernFormPopupMenuLocation.BottomLeft;
   }
   final RenderBox? bar = context.findRenderObject() as RenderBox?;
-  final RenderBox? overlay =
-      Overlay.of(context).context.findRenderObject() as RenderBox?;
+  RenderBox? overlay;
+  try {
+    final result = Overlay.of(context).context.findRenderObject();
+    if (result is RenderBox) {
+      overlay = result;
+    }
+  } catch (e) {}
+
   switch (menuLocation) {
     case ModernFormPopupMenuLocation.BottomLeft:
       return RelativeRect.fromRect(
@@ -23,7 +29,7 @@ RelativeRect modernFormPopupMenuPosition(
             ancestor: overlay,
           ),
         ),
-        Offset.zero & overlay!.size,
+        Offset.zero & (overlay?.size ?? bar.size),
       );
     case ModernFormPopupMenuLocation.BottomRight:
       return RelativeRect.fromRect(
@@ -45,7 +51,7 @@ RelativeRect modernFormPopupMenuPosition(
           bar!.localToGlobal(bar.size.topLeft(Offset.zero), ancestor: overlay),
           bar.localToGlobal(bar.size.topLeft(Offset.zero), ancestor: overlay),
         ),
-        Offset.zero & overlay!.size,
+        Offset.zero & (overlay?.size ?? bar.size),
       );
     case ModernFormPopupMenuLocation.TopRight:
       return RelativeRect.fromRect(
@@ -53,7 +59,7 @@ RelativeRect modernFormPopupMenuPosition(
           bar!.localToGlobal(bar.size.topRight(Offset.zero), ancestor: overlay),
           bar.localToGlobal(bar.size.topRight(Offset.zero), ancestor: overlay),
         ),
-        Offset.zero & overlay!.size,
+        Offset.zero & (overlay?.size ?? bar.size),
       );
   }
 }
